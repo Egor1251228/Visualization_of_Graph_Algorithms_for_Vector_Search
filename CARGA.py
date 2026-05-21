@@ -12,13 +12,11 @@ def build_cagra_graph(points, num_nodes, out_degree):
     
     pruned = {}
     for i in range(num_nodes):
-        # Sort all neighbors by distance (excluding the node itself)
         candidates = np.argsort(dist_matrix[i])[1:]
         
         kept = []
         skipped = []
         
-        # Rank-based Pruning
         for j in candidates:
             if len(kept) == out_degree:
                 break
@@ -34,8 +32,6 @@ def build_cagra_graph(points, num_nodes, out_degree):
             else:
                 skipped.append(j)
                 
-        # If pruning leaves us with fewer than 'out_degree' edges,
-        # forcefully fill the remaining slots with the closest skipped nodes
         for j in skipped:
             if len(kept) == out_degree:
                 break
@@ -43,7 +39,6 @@ def build_cagra_graph(points, num_nodes, out_degree):
             
         pruned[i] = kept
 
-    # Reversal (adding reverse edges for strong connectivity)
     final_graph = {i: list(pruned[i]) for i in range(num_nodes)}
     for i in range(num_nodes):
         for neighbor in pruned[i]:
