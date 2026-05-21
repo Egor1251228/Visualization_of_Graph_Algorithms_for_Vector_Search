@@ -14,7 +14,7 @@ winget install --id Python.Python.3.14 --exact --source winget
 7)	Выберете новую установленную версию Python
 
   Продолжим подготовку нашей среды для запуска всех скриптов, а именно установим все зависимости для этого:
-1)	Установим нужные зависимости. В терминале выполните следующую команду:
+1) В терминале выполните следующую команду:
 
 pip install streamlit numpy scikit-learn plotly networkx matplotlib scipy
 
